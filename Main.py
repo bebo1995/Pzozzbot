@@ -19,6 +19,11 @@ def on_chat_message(msg):
 	txt = msg['text']#messaggio scritto
 	if content_type == 'text':
 		print ('Text received')
+		if txt == '/smetti':
+			Pzozzbot.sendMessage(chat_id, 'Ok.')
+			ascoltando = False
+			contatore = 0
+			nomi = []
 		if txt == '/ascolta':
 			print('Listening function started')
 			ascoltando = True
