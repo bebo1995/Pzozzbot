@@ -9,10 +9,10 @@ def getDB():
 
 db = getDB()
 
-def scriviFrase1(frase,utente,i):
+def scriviFrase1(frase,utente):
 	ref = db.collection('Dialoghi')
-	indice = i-2 #il contatore parte da 3. Così il primo indice sarà 1.
-	query = ref.where('utente1','==',utente).order_by('indice', direction=firestore.Query.DESCENDING).limit(1)
+	indice = 1
+	query = ref.where('utente1','==',utente)
 	try:
 		docs = query.get()
 		numero = 0
