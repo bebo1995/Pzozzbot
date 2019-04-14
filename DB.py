@@ -2,7 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 	
 def getDB():
-	cred = credentials.Certificate('pzozz-53684-firebase-adminsdk-sg7xp-4f367da944.json')
+	cred = credentials.Certificate('pzozz-53684-firebase-adminsdk-sg7xp-44b6ab3049.json')
 	app = firebase_admin.initialize_app(cred)
 	db = firestore.client()
 	return db
