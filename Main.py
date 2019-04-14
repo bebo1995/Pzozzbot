@@ -34,4 +34,4 @@ Pzozzbot.message_loop(on_chat_message)
 print('Pzozz started!')
 while 1:
 	print('Running...')
-	time.sleep(10)
+	time.sleep(100)
