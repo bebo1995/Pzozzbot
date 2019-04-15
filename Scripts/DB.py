@@ -10,6 +10,7 @@ def getDB():
 db = getDB()
 
 def scriviFrase1(frase,utente):
+	frase = frase.lower()
 	ref = db.collection('Dialoghi')
 	indice = 1
 	query = ref.where('utente1','==',utente)
@@ -31,6 +32,7 @@ def scriviFrase1(frase,utente):
 	})
 	
 def scriviFrase2(frase,utente1,utente2):
+	frase = frase.lower()
 	ref = db.collection('Dialoghi')
 	query = ref.where('utente1','==',utente1).where('frase2','==',None).order_by('indice').limit(1)
 	try:
@@ -45,3 +47,15 @@ def scriviFrase2(frase,utente1,utente2):
 	except:
 		print('errore di lettura!')
 		return
+		
+def leggiRisposte(frase1):
+	frase1 = frase1.lower()
+	ref = db.collection('Dialoghi')
+	query = ref.where('frase1','==',frase1)
+	try:
+		print('provo')
+		docs = query.get()
+	except:
+		print('errore di lettura!')
+		return
+	return docs	
