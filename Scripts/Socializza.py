@@ -1,6 +1,7 @@
 from Nodo import Nodo
-import telepot
 from DB import leggiRisposte
+import random
+import telepot
 
 def socializza_foo(msg,chat_id,bot):
 	parole = msg['text'].split()
@@ -23,6 +24,7 @@ def socializza_foo(msg,chat_id,bot):
 		nodo = Nodo.from_dict(doc.to_dict(),nodo)
 	risposta = 'e sticazzi!'
 	if len(nodo.risposte) > 0:
-		risposta = nodo.risposte[0]
+		scelta = random.randint(0, -1 + len(nodo.risposte))
+		risposta = nodo.risposte[scelta]
 	bot.sendMessage(chat_id,risposta)
 		

@@ -24,7 +24,7 @@ def ascolta_foo(bot,msg,chat_id,persona,i):
 		if msg["from"]["first_name"] == persona[0] or msg["from"]["first_name"] == persona[1]:
 			if (f1Arrivata == 0 and f2Arrivata == 0) or ((f1Arrivata > f2Arrivata)and msg["from"]["first_name"] == personaInAttesa):
 				personaInAttesa = msg["from"]["first_name"]
-				scriviFrase1(msg['text'],personaInAttesa)
+				scriviFrase1(msg['text'],personaInAttesa,i)
 				f1Arrivata += 1
 			if (f1Arrivata > f2Arrivata) and msg["from"]["first_name"] != personaInAttesa:
 				scriviFrase2(msg['text'],personaInAttesa,msg["from"]["first_name"])
