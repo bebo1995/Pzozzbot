@@ -21,6 +21,8 @@ def scriviFrase1(frase,utente,contatore):
 		if indice == 1: #se indice == 1 è iniziato un nuovo dialogo
 			#quindi devi incrementare il numero del dialogo.
 			n_dialogo = doc.to_dict()['ndialogo'] + 1
+		else:#in caso contrario il numero di dialogo rimane uguale
+			n_dialogo = doc.to_dict()['ndialogo']
 	ref.document().set({
 	'ndialogo' :n_dialogo,
 	'indice':indice,
@@ -42,10 +44,24 @@ def scriviFrase2(frase,utente1,utente2):
 	'frase2':frase,
 	'utente2':utente2
 	})
+	
+def invertiIndici():
+	ref = db.collection('Dialoghi')
+	query = ref.order_by('ndialogo',direction=firestore.Query.DESCENDING).limit(1)
+	docs = query.get()
+	indiceMax = 1
+	for doc in docs:
+		if doc.to_dict()['indice'] > indiceMax:
+			indiceMax = doc.to_dict()['indice']
+	for doc in docs:
+		ref.document(doc.id).update({
+		'indice':indiceMax
+		})
+		indiceMax = indiceMax -1
 		
 def leggiRisposte(frase1):
 	frase1 = frase1.lower()
 	ref = db.collection('Dialoghi')
 	query = ref.where('frase1','==',frase1)
 	docs = query.get()
-	return docs	
+	return docs 
